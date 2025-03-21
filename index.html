@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+
+        <!-- General Meta Tags -->
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Attempt into rio with go and wasm" />
+
+        <!-- Open Graph Meta Tags -->
+        <meta property="og:title" content="RIO with GO & WASM" />
+        <meta property="og:description" content="description idk" />
+        <meta property="og:type" content="website" />
+        <script src="go/wasm_exec.js"></script>
+
+        <!--Wasm connect-->
+        <script>
+            const go = new Go();
+            WebAssembly.instantiateStreaming(fetch("build/main.wasm"), go.importObject).then((result) => {
+                go.run(result.instance);
+            });
+        </script>
+
+        <!--Styles connect-->
+        <link href='https://go.dev/fonts/GoRegular.woff' rel='stylesheet' type='font/woff'>
+        <link href="styles.css" rel="stylesheet" type="text/css">
+        <link rel="preload" href="assets/cursor-drag.svg" as="image">
+        <link rel="preload" href="assets/cursor-inverted.svg" as="image">
+        <link rel="preload" href="assets/cursor-selection.svg" as="image">
+        <link rel="preload" href="assets/cursor-select.svg" as="image">
+        <link rel="preload" href="assets/cursor.svg" as="image">
+
+        <title>Manager</title>
+    </head>
+    <body>
+        <script src="assets/adaptTouch.js"></script>
+    </body>
+</html>
